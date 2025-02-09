@@ -11,11 +11,12 @@ For individuals and families looking to adopt healthier eating habits, the **Mim
 
 #### Features
 
-[] - Auth and User accounts
-[] - Markup articles
-[] - Categories
-[] - Search bar
-[] - + more
+[]  Auth and User accounts
+[]  Markup articles
+[]  Categories
+[]  Search bar
+[]  Deploy in Docker
+[]  + more
 
 
 #### References & Inspirations
