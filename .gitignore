@@ -1,5 +1,5 @@
 env/
-/venv/
+venv/
 config/
 *.pyc
 __pycache__/
