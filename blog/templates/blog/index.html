@@ -1,14 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>MimiEats</title>
-</head>
-<body>
+<!-- blog/templates/blog/index.html -->
+<!-- https://docs.djangoproject.com/en/4.2/ref/templates/language/ -->
+
+
+{% block page_title %}
+    <h2>Blog Posts</h2>
+{% endblock page_title %}
+
+{% block page_content %}
+    {% block posts %}
     <h1>MimiEats: Healthy Eating for a Sustainable Future</h1>
-    <ul>
-        <!-- {% for article in articles %}
-            <li><strong>{{ article.title }}</strong>: {{ article.content }}</li>
-        {% endfor %} -->
-    </ul>
-</body>
-</html>
+        {% for post in posts %}
+            <h3><a href="{% url 'blog_detail' post.pk %}">{{ post.title }}</a></h3>
+            <small>
+                {{ post.created_on.date }} | Categories:
+                {% for category in post.categories.all %}
+                    <a href="{% url 'blog_category' category.name %}">
+                        {{ category.name }}
+                    </a>
+                {% endfor %}
+            </small>
+            <p>{{ post.body | slice:":400" }}...</p>
+        {% endfor %}
+    {% endblock posts %}
+{% endblock page_content %}

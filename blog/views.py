@@ -22,7 +22,9 @@ def index(request):
     articles_ref = db.collection("articles")
     articles = [doc.to_dict() for doc in articles_ref.stream()]
     return render(request, "blog/index.html", {"articles": articles})
-# Create your views here.
+
+    
+# https://docs.djangoproject.com/en/4.2/topics/db/queries/#
 
 def blog_index(request):
     # SQL-like python code "FROM Post * ORDER_BY "created_on" "
@@ -46,3 +48,13 @@ def blog_category(request, category):
         "posts": posts,
     }
     return render(request, "blog/category.html", context)
+
+def blog_detail(request, pk):
+    post = Post.objects.get(pk=pk)
+    comments = Comment.objects.filter(post=post)
+    context = {
+        "post": post,
+        "comments": comments,
+    }
+
+    return render(request, "blog/detail.html", context)
